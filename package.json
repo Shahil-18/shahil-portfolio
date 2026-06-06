@@ -1,5 +1,5 @@
 {
-  "homepage": "https://Shahil-18.github.io/shahil-portfolio",
+  "homepage": "https://shahil-18.github.io/shahil-portfolio",
   "name": "shahil-portfolio",
   "private": false,
   "version": "1.0.0",
@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.8",
     "@vitejs/plugin-react": "^5.0.0",
     "framer-motion": "^12.23.12",
@@ -24,11 +25,11 @@
     "vite": "^7.1.2"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "eslint": "^9.33.0",
     "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "gh-pages": "^6.3.0",
     "globals": "^16.3.0"
   }
 }
