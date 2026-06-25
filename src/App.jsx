@@ -222,6 +222,7 @@ function App() {
       <Hero />
       <About />
       <FunZone />
+      <UIPlayground />
       <Skills />
       <Services />
       <TerminalSection />
@@ -298,6 +299,7 @@ function Navbar() {
 
   const navItems = [
     "about",
+    "playground",
     "skills",
     "services",
     "terminal",
@@ -322,7 +324,7 @@ function Navbar() {
               href={`#${item}`}
               className="capitalize hover:text-fuchsia-400 transition"
             >
-              {item}
+              {item === "playground" ? "UI Game" : item}
             </a>
           ))}
         </div>
@@ -396,7 +398,7 @@ function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-300 text-xs md:text-sm mb-6"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Available for Internship / Fresher Role
+          Available for Full-time / Fresher Developer Roles
         </motion.div>
 
         <p className="uppercase tracking-[7px] text-fuchsia-400 mb-6 text-xs md:text-sm">
@@ -412,11 +414,11 @@ function Hero() {
         <div className="text-xl md:text-4xl font-bold text-fuchsia-400 h-16">
           <Typewriter
             words={[
-              "Full Stack Developer",
-              "React Developer",
-              "Firebase Developer",
-              "UI/UX Learner",
-              "Frontend Engineer Mode",
+              "Software Developer",
+              "Full-Stack Developer",
+              "Frontend Developer",
+              "React.js Developer",
+              "UI/UX Designer",
             ]}
             loop={0}
             cursor
@@ -428,21 +430,21 @@ function Hero() {
         </div>
 
         <p className="mt-8 text-gray-400 text-base md:text-xl leading-8 max-w-3xl mx-auto">
-          Final Year B.Tech CSE student building modern, useful and visually
-          impressive web applications with React, Firebase, Tailwind CSS and
-          clean UI engineering.
+          B.Tech CSE 2026 graduate with full-time experience in software
+          development, frontend development, backend-related tasks, UI/UX design,
+          product design and digital branding.
         </p>
 
         <p className="mt-5 text-emerald-400 font-semibold">
-          Code karta hoon, bugs se ladta hoon, aur UI ko royal banata hoon ⚔️
+          I build clean code, sharp UI and digital experiences that feel alive ⚔️
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mt-10">
           <a
-            href="#projects"
+            href="#playground"
             className="px-8 py-4 bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-xl font-bold hover:scale-105 transition shadow-lg shadow-fuchsia-500/20"
           >
-            View Projects
+            Try UI Game
           </a>
 
           <a
@@ -500,25 +502,25 @@ function About() {
     <Section id="about" title="About Me">
       <div className="bg-gradient-to-br from-zinc-950/90 via-purple-950/20 to-zinc-950/90 border border-white/10 rounded-3xl p-7 md:p-10 backdrop-blur-xl">
         <p className="text-gray-300 text-lg md:text-xl leading-9 md:leading-10">
-          I'm Shahil Sharma, a Final Year B.Tech Computer Science Engineering
-          student at Roorkee Institute of Technology. I focus on Full Stack Web
-          Development, UI/UX design and building practical digital products. I
-          enjoy turning ideas into clean, responsive and visually impressive web
-          apps.
+          I am Shahil Sharma, a B.Tech CSE 2026 graduate and Software Developer
+          with full-time experience as a Software Developer & Product Designer at
+          Leistung Technology. I work across frontend development, responsive UI,
+          UI/UX design, basic backend workflows, Firebase, API integration,
+          product layouts and digital branding.
         </p>
 
         <div className="grid md:grid-cols-3 gap-5 mt-10">
           <InfoCard
-            title="Education"
-            text="B.Tech CSE, Roorkee Institute of Technology"
+            title="Role"
+            text="Software Developer, Full-Stack Developer, Frontend Developer and UI/UX Designer"
           />
           <InfoCard
             title="Focus"
-            text="React, Firebase, Tailwind CSS and UI Engineering"
+            text="React.js, Firebase, responsive design, backend basics, API integration and UI/UX"
           />
           <InfoCard
             title="Goal"
-            text="Build strong projects and grow as a Software Engineer"
+            text="Build production-ready projects and grow as a strong software engineer"
           />
         </div>
       </div>
@@ -568,6 +570,176 @@ function FunCard({ title, text, rotate }) {
       <h3 className="text-2xl font-black mb-4">{title}</h3>
       <p className="text-gray-400 leading-7">{text}</p>
     </motion.div>
+  );
+}
+
+
+function UIPlayground() {
+  const [score, setScore] = useState(0);
+  const [star, setStar] = useState({ x: 52, y: 48 });
+  const [combo, setCombo] = useState(false);
+
+  const moveStar = () => {
+    const nextX = Math.floor(Math.random() * 78) + 8;
+    const nextY = Math.floor(Math.random() * 62) + 18;
+    setStar({ x: nextX, y: nextY });
+    setScore((prev) => prev + 1);
+    setCombo(true);
+    setTimeout(() => setCombo(false), 450);
+  };
+
+  const resetGame = () => {
+    setScore(0);
+    setStar({ x: 52, y: 48 });
+  };
+
+  const designCards = [
+    {
+      title: "Glassmorphism",
+      text: "Blur, border and glow for premium UI depth.",
+      icon: <FaMagic />,
+      rotate: "-6",
+    },
+    {
+      title: "Micro Interactions",
+      text: "Small movements that make UI feel alive.",
+      icon: <FaBolt />,
+      rotate: "5",
+    },
+    {
+      title: "Color Psychology",
+      text: "Fuchsia for energy, emerald for trust, cyan for tech.",
+      icon: <FaPalette />,
+      rotate: "-3",
+    },
+  ];
+
+  return (
+    <Section id="playground" title="UI Playground">
+      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-zinc-950/95 via-fuchsia-950/20 to-cyan-950/20 p-5 md:p-8 backdrop-blur-xl">
+        <div className="absolute -top-28 -left-28 w-80 h-80 bg-fuchsia-500/20 blur-3xl rounded-full"></div>
+        <div className="absolute -bottom-28 -right-28 w-80 h-80 bg-emerald-500/20 blur-3xl rounded-full"></div>
+        <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+        <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-stretch">
+          <div className="bg-black/35 border border-white/10 rounded-[2rem] p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-fuchsia-500 flex items-center justify-center text-xl">
+                <FaMagic />
+              </div>
+
+              <div>
+                <h3 className="text-3xl font-black">Catch the Star</h3>
+                <p className="text-gray-400 text-sm">
+                  Tap the glowing star and test your reflex.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 mb-5">
+              <span className="px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 font-bold">
+                Score: {score}
+              </span>
+
+              <span className="px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-400/20 text-fuchsia-300 font-bold">
+                {score < 5
+                  ? "Start slow"
+                  : score < 10
+                  ? "Okay, fast hands"
+                  : "Reflex king mode"}
+              </span>
+
+              <button
+                onClick={resetGame}
+                className="px-4 py-2 rounded-full bg-white/10 border border-white/10 text-gray-300 hover:border-cyan-400 transition"
+                type="button"
+              >
+                Reset
+              </button>
+            </div>
+
+            <div className="relative h-[340px] rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_center,#ffffff12_1px,transparent_1px)] bg-[size:24px_24px] overflow-hidden">
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
+                <div className="absolute top-8 left-10 w-24 h-24 rounded-full bg-purple-500/20 blur-2xl"></div>
+                <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-cyan-500/20 blur-2xl"></div>
+                <div className="absolute top-1/2 left-1/3 w-24 h-24 rounded-full bg-emerald-500/20 blur-2xl"></div>
+              </motion.div>
+
+              <motion.button
+                onClick={moveStar}
+                animate={{
+                  left: `${star.x}%`,
+                  top: `${star.y}%`,
+                  scale: combo ? [1, 1.6, 1] : [1, 1.12, 1],
+                  rotate: [0, 12, -12, 0],
+                }}
+                transition={{ duration: 0.35 }}
+                className="absolute z-20 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-400 via-purple-500 to-cyan-400 flex items-center justify-center shadow-2xl shadow-fuchsia-500/40 border border-white/30 text-xl"
+                aria-label="Catch floating star"
+                type="button"
+              >
+                ✦
+              </motion.button>
+            </div>
+          </div>
+
+          <div className="relative min-h-[480px] bg-black/35 border border-white/10 rounded-[2rem] p-6 md:p-8 overflow-hidden">
+            <h3 className="text-3xl font-black mb-3">Designer Brain Mode</h3>
+
+            <p className="text-gray-400 leading-7 mb-8">
+              Clean UI is good. But a little movement, glow and personality
+              makes people stop scrolling.
+            </p>
+
+            {designCards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                drag
+                dragConstraints={{ left: -20, right: 20, top: -20, bottom: 20 }}
+                whileHover={{ scale: 1.05, rotate: 0 }}
+                initial={{ opacity: 0, y: 40, rotate: Number(card.rotate) }}
+                whileInView={{ opacity: 1, y: 0, rotate: Number(card.rotate) }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className={`relative mb-5 rounded-3xl border border-white/10 bg-gradient-to-br ${
+                  index === 0
+                    ? "from-purple-500/20 to-black/40"
+                    : index === 1
+                    ? "from-emerald-500/20 to-black/40"
+                    : "from-cyan-500/20 to-black/40"
+                } p-6 cursor-grab active:cursor-grabbing`}
+              >
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-xl text-fuchsia-300">
+                    {card.icon}
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-black mb-2">{card.title}</h4>
+                    <p className="text-gray-400 leading-7">{card.text}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+
+            <div className="mt-8 rounded-3xl border border-fuchsia-400/20 bg-fuchsia-500/10 p-5">
+              <p className="text-fuchsia-200 font-bold mb-2">
+                Drag them. Break the boring portfolio rule ✨
+              </p>
+
+              <p className="text-gray-400 text-sm leading-6">
+                I like interfaces that feel alive — not just static boxes on a
+                screen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
   );
 }
 
@@ -669,19 +841,25 @@ function Services() {
 function TerminalSection() {
   const commands = useMemo(
     () => [
-      { cmd: "whoami", output: "Shahil Sharma — Final Year CSE Student" },
+      {
+        cmd: "whoami",
+        output:
+          "Shahil Sharma — Software Developer | Full-Stack Developer | UI/UX Designer",
+      },
       {
         cmd: "skills --top",
-        output: "React | Firebase | Tailwind | JavaScript | UI/UX",
+        output: "React.js | JavaScript | Tailwind CSS | Firebase | Backend Basics | UI/UX",
       },
       {
-        cmd: "mission",
-        output: "Build useful products. Crack placement. Keep upgrading.",
+        cmd: "experience",
+        output:
+          "Leistung Technology — Software Developer & Product Designer — Full-time",
       },
       {
-        cmd: "status",
-        output: "Open to internships, fresher roles and frontend opportunities.",
-      },
+  cmd: "status",
+  output:
+    "Open to full-time Software Developer, Full-Stack Developer and UI/UX Designer opportunities.",
+},
     ],
     []
   );
@@ -903,27 +1081,90 @@ function ProjectModal({ project, onClose }) {
 }
 
 function Experience() {
+  const experiencePoints = [
+    "Worked on the company website to improve layout, responsiveness, performance, and overall user experience.",
+    "Developed and optimized frontend pages using clean UI structure, responsive design principles, and reusable layouts.",
+    "Supported backend-related tasks such as database connectivity, authentication flow understanding, form handling, and basic API integration.",
+    "Created UI/UX designs, product layouts, and digital creatives using tools like Figma and Canva.",
+    "Contributed to product and packaging design projects while maintaining brand consistency.",
+    "Supported social media and digital branding activities to improve the company’s online presence.",
+    "Collaborated across development, design, product, and marketing tasks in a full-time professional role.",
+  ];
+
   return (
     <Section id="experience" title="Experience">
       <div className="space-y-8">
-        <div className="bg-gradient-to-br from-zinc-950/90 via-purple-950/20 to-zinc-950/90 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-xl">
-          <h3 className="text-3xl font-black mb-2">Leistung Technology</h3>
+        <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950/90 via-purple-950/20 to-zinc-950/90 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-xl">
+          <div className="absolute -top-20 -right-20 w-72 h-72 bg-fuchsia-500/20 blur-3xl rounded-full"></div>
+          <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-emerald-500/10 blur-3xl rounded-full"></div>
 
-          <p className="text-fuchsia-400 font-semibold mb-6">
-            Software Developer & Product Designer Intern · Jul 2024 - Oct 2024
-          </p>
+          <div className="relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-8">
+              <div>
+                <h3 className="text-3xl md:text-4xl font-black mb-3">
+                  Leistung Technology
+                </h3>
 
-          <div className="grid md:grid-cols-2 gap-5 text-gray-300 text-lg leading-8">
-            <p>
-              Designed and optimized responsive website interfaces to improve
-              user engagement and maintain UI consistency across devices.
-            </p>
+                <p className="text-fuchsia-400 font-bold text-lg">
+                  Software Developer & Product Designer — Full-time
+                </p>
+              </div>
 
-            <p>
-              Worked on UI/UX solutions for web and product interfaces while
-              contributing to product design, packaging design and social media
-              marketing strategy.
-            </p>
+              <div className="inline-flex w-fit px-5 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 font-bold">
+                July 2024 – June 2026
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-5">
+              {experiencePoints.map((point, index) => (
+                <motion.div
+                  key={point}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="group bg-black/35 border border-white/10 rounded-2xl p-5 hover:border-fuchsia-400/60 hover:bg-fuchsia-500/5 transition"
+                >
+                  <div className="flex gap-4">
+                    <span className="min-w-8 h-8 rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/20 text-fuchsia-300 flex items-center justify-center font-black text-sm group-hover:scale-110 transition">
+                      {index + 1}
+                    </span>
+
+                    <p className="text-gray-300 leading-7">{point}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 grid md:grid-cols-4 gap-4">
+              <div className="bg-black/35 border border-white/10 rounded-2xl p-5">
+                <p className="text-gray-500 text-sm mb-2">Role Type</p>
+                <h4 className="text-xl font-black text-emerald-400">
+                  Full-time
+                </h4>
+              </div>
+
+              <div className="bg-black/35 border border-white/10 rounded-2xl p-5">
+                <p className="text-gray-500 text-sm mb-2">Frontend</p>
+                <h4 className="text-xl font-black text-fuchsia-400">
+                  UI + Pages
+                </h4>
+              </div>
+
+              <div className="bg-black/35 border border-white/10 rounded-2xl p-5">
+                <p className="text-gray-500 text-sm mb-2">Backend</p>
+                <h4 className="text-xl font-black text-cyan-400">
+                  API + Forms
+                </h4>
+              </div>
+
+              <div className="bg-black/35 border border-white/10 rounded-2xl p-5">
+                <p className="text-gray-500 text-sm mb-2">Design</p>
+                <h4 className="text-xl font-black text-purple-400">
+                  UI/UX + Product
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -931,13 +1172,13 @@ function Experience() {
           <h3 className="text-3xl font-black mb-2">Leadership & Activities</h3>
 
           <p className="text-emerald-400 font-semibold mb-6">
-            Coordinator · Urja Club · 2022 - 2026
+            Head Coordinator · Urja Club · Roorkee Institute of Technology
           </p>
 
           <p className="text-gray-300 text-lg leading-9">
-            Coordinated club activities and contributed to successful college
-            events, strengthening teamwork, communication and event management
-            skills.
+            Successfully coordinated and hosted multiple college events during
+            2024–2026, improving leadership, communication, teamwork and event
+            management skills.
           </p>
         </div>
       </div>
@@ -1153,7 +1394,7 @@ function WhyHireMe() {
     },
     {
       title: "Team Player",
-      desc: "Internship and club coordination improved teamwork and communication.",
+      desc: "Full-time work experience and club coordination improved teamwork and communication.",
     },
     {
       title: "Problem Solving Attitude",
@@ -1222,8 +1463,8 @@ function QuickStats() {
     },
     {
       value: "1",
-      label: "Internship",
-      desc: "Software Developer & Product Designer Intern",
+      label: "Full-time",
+      desc: "Software Developer & Product Designer (Full-time)",
     },
     {
       value: "100%",
@@ -1287,8 +1528,8 @@ function RecruiterCTA() {
 
             <RecruiterPoint
               icon={<FaBriefcase />}
-              title="Internship Experience"
-              text="Worked as Software Developer & Product Designer Intern."
+              title="Full-time"
+              text="Worked full-time as Software Developer & Product Designer at Leistung Technology."
             />
 
             <RecruiterPoint
@@ -1335,7 +1576,7 @@ function Resume() {
 
         <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-8 mb-8">
           Download my resume to view my education, technical skills, projects,
-          internship experience and complete profile.
+          Full-time experience and complete profile.
         </p>
 
         <a
@@ -1420,7 +1661,7 @@ function Contact() {
           </h3>
 
           <p className="text-gray-400 text-lg leading-8 mb-8">
-            Open for internships, placements and exciting web development
+            Open for Full-time, placements and exciting web development
             projects. You can contact me through form, WhatsApp, email or
             GitHub.
           </p>
@@ -1561,9 +1802,9 @@ function PortfolioAssistant() {
 
   const quickActions = [
     {
-      label: "Projects",
-      icon: <FaLaptopCode />,
-      href: "#projects",
+      label: "UI Game",
+      icon: <FaMagic />,
+      href: "#playground",
       type: "internal",
     },
     {
@@ -1637,7 +1878,7 @@ function PortfolioAssistant() {
               <div className="bg-black/40 border border-white/10 rounded-2xl p-4 mb-4">
                 <p className="text-gray-300 leading-7 text-sm">
                   Hey 👋 I’m <span className="text-fuchsia-400">S Bot</span>.
-                  I can help you explore Shahil’s projects, skills, resume and
+                  Try the UI game or explore Shahil’s skills, projects and
                   contact options.
                 </p>
               </div>
@@ -1715,6 +1956,7 @@ function BackToTop({ show }) {
 
 function Footer() {
   const footerLinks = [
+    { name: "UI Game", href: "#playground" },
     { name: "Projects", href: "#projects" },
     { name: "GitHub", href: "https://github.com/Shahil-18" },
     {
@@ -1736,7 +1978,7 @@ function Footer() {
             </h3>
 
             <p className="text-gray-500 leading-7">
-              Full Stack Developer • React Developer • UI/UX Learner
+              Software Developer • Full-Stack Developer • UI/UX Designer
             </p>
           </div>
 
@@ -1756,7 +1998,7 @@ function Footer() {
 
           <div className="md:text-right">
             <p className="text-gray-500">
-              Built with React, Tailwind CSS and thoda sa masti.
+              Built with React.js, Tailwind CSS and royal UI energy.
             </p>
 
             <p className="text-fuchsia-400 font-bold mt-2">
